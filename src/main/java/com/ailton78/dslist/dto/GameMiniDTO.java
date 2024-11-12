@@ -2,6 +2,7 @@ package com.ailton78.dslist.dto;
 
 
 import com.ailton78.dslist.entities.Game;
+import com.ailton78.dslist.projections.GameMinProjection;
 
 public class GameMiniDTO {
     private Long id;
@@ -18,6 +19,13 @@ public class GameMiniDTO {
         this.year = entity.getYear();
         this.imgUrl = entity.getImgUrl();
         this.shortDescription = entity.getShortDescription();
+    }
+    public GameMiniDTO(GameMinProjection projection) {
+        this.id = projection.getId();
+        this.title = projection.getTitle();
+        this.year = projection.getYear();
+        this.imgUrl = projection.getImgUrl();
+        this.shortDescription = projection.getShortDescription();
     }
 
     public Long getId() {
