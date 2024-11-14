@@ -2,14 +2,12 @@ package com.ailton78.dslist.controllers;
 
 import com.ailton78.dslist.dto.GameListDTO;
 import com.ailton78.dslist.dto.GameMiniDTO;
+import com.ailton78.dslist.dto.ReplacementDTO;
 import com.ailton78.dslist.services.GameListService;
 
 import com.ailton78.dslist.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,5 +29,9 @@ public class GameListController {
     public List<GameMiniDTO> findByList(@PathVariable Long listId){
         List<GameMiniDTO> result = gameService.findByList(listId);
         return result;
+    }
+    @PostMapping(value = "/{listId}/replacement")
+    public void move(@PathVariable Long listId,@RequestBody ReplacementDTO body){
+      gameListService.move(listId, body.getSouicerIndex(), body.getDestinationIndex());
     }
 }
